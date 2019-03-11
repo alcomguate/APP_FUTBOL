@@ -1,0 +1,39 @@
+﻿@model IEnumerable<APP_FUTBOL.Models.Cat_Equipo>
+
+@{
+    ViewBag.Title = "Soccer Total";
+}
+
+<h2>Equipo</h2>
+
+<p>
+    @Html.ActionLink("Nuevo equipo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Nombre</label>
+        </th>
+        <th>
+            <label>Categoría</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cat_Categoria.descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Ver", "Details", new { id=item.id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoccerTotalModelStoreContainer" CdmEntityContainer="SoccerTotalEntities">
+    <EntitySetMapping Name="Campeonatoes">
+      <EntityTypeMapping TypeName="SoccerTotalModel.Campeonato">
+        <MappingFragment StoreEntitySet="Campeonato">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="inicio" ColumnName="inicio" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cat_Categoria">
+      <EntityTypeMapping TypeName="SoccerTotalModel.Cat_Categoria">
+        <MappingFragment StoreEntitySet="Cat_Categoria">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cat_Equipo">
+      <EntityTypeMapping TypeName="SoccerTotalModel.Cat_Equipo">
+        <MappingFragment StoreEntitySet="Cat_Equipo">
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fec_inscripcion" ColumnName="fec_inscripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cat_Jugador">
+      <EntityTypeMapping TypeName="SoccerTotalModel.Cat_Jugador">
+        <MappingFragment StoreEntitySet="Cat_Jugador">
+          <ScalarProperty Name="equipo" ColumnName="equipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="primer_nombre" ColumnName="primer_nombre" />
+          <ScalarProperty Name="segundo_nombre" ColumnName="segundo_nombre" />
+          <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+          <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+          <ScalarProperty Name="fec_nacimiento" ColumnName="fec_nacimiento" />
+          <ScalarProperty Name="fec_registro" ColumnName="fec_registro" />
+          <ScalarProperty Name="dorsal" ColumnName="dorsal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Data_Encuentro_Jugador">
+      <EntityTypeMapping TypeName="SoccerTotalModel.Data_Encuentro_Jugador">
+        <MappingFragment StoreEntitySet="Data_Encuentro_Jugador">
+          <ScalarProperty Name="encuentro" ColumnName="encuentro" />
+          <ScalarProperty Name="jugador" ColumnName="jugador" />
+          <ScalarProperty Name="goles_anotados" ColumnName="goles_anotados" />
+          <ScalarProperty Name="tarjetas_amarillas" ColumnName="tarjetas_amarillas" />
+          <ScalarProperty Name="tarjetas_rojas" ColumnName="tarjetas_rojas" />
+          <ScalarProperty Name="goles_recibidos" ColumnName="goles_recibidos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Encuentroes">
+      <EntityTypeMapping TypeName="SoccerTotalModel.Encuentro">
+        <MappingFragment StoreEntitySet="Encuentro">
+          <ScalarProperty Name="finalizado" ColumnName="finalizado" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fec_encuentro" ColumnName="fec_encuentro" />
+          <ScalarProperty Name="hora_encuentro" ColumnName="hora_encuentro" />
+          <ScalarProperty Name="numero_campo" ColumnName="numero_campo" />
+          <ScalarProperty Name="campeonato" ColumnName="campeonato" />
+          <ScalarProperty Name="equipo_local" ColumnName="equipo_local" />
+          <ScalarProperty Name="equipo_visita" ColumnName="equipo_visita" />
+          <ScalarProperty Name="goles_local" ColumnName="goles_local" />
+          <ScalarProperty Name="goles_visita" ColumnName="goles_visita" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posiciones">
+      <EntityTypeMapping TypeName="SoccerTotalModel.Posicione">
+        <MappingFragment StoreEntitySet="Posiciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="campeonato" ColumnName="campeonato" />
+          <ScalarProperty Name="equipo" ColumnName="equipo" />
+          <ScalarProperty Name="goles_favor" ColumnName="goles_favor" />
+          <ScalarProperty Name="goles_contra" ColumnName="goles_contra" />
+          <ScalarProperty Name="juegos_ganados" ColumnName="juegos_ganados" />
+          <ScalarProperty Name="juegos_perdidos" ColumnName="juegos_perdidos" />
+          <ScalarProperty Name="juegos_empatados" ColumnName="juegos_empatados" />
+          <ScalarProperty Name="puntos" ColumnName="puntos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

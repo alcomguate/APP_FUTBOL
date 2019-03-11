@@ -1,0 +1,67 @@
+﻿@model IEnumerable<APP_FUTBOL.Models.Encuentro>
+
+@{
+    ViewBag.Title = "Encuentros";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo encuentro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Fecha</label>
+        </th>
+        <th>
+            <label>Hora</label>
+        </th>
+        <th>
+            <label>Campo no.</label>
+        </th>
+        <th colspan="2">
+            <label>Equipos</label>
+        </th>
+        <th colspan="2">
+            <label>Resultado</label>
+        </th>
+        <th>
+            <label>Finalizado.</label>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fec_encuentro, new { @class = "datepicker"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hora_encuentro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numero_campo)
+        </td>
+        <td colspan="2">
+            @Html.DisplayFor(modelItem => item.Cat_Equipo.nombre)
+            <b> vs </b>
+            @Html.DisplayFor(modelItem => item.Cat_Equipo1.nombre)
+        </td>
+        <td colspan="2">
+            @Html.DisplayFor(modelItem => item.goles_local)
+            -
+            @Html.DisplayFor(modelItem => item.goles_visita)
+        </td>
+
+        <td>
+            @Html.CheckBoxFor(modelItem => item.finalizado, new { @disabled = "disabled" })
+        </td>
+
+        <td>
+            @Html.ActionLink("Registrar", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Ver", "Details", new { id = item.id }) |
+        </td>
+    </tr>
+}
+
+</table>

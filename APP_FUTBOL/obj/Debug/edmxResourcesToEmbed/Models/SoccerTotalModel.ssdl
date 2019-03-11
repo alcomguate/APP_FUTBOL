@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SoccerTotalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Campeonato">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="inicio" Type="date" Nullable="false" />
+    <Property Name="fin" Type="date" Nullable="false" />
+    <Property Name="categoria" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cat_Categoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cat_Equipo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fec_inscripcion" Type="date" Nullable="false" />
+    <Property Name="categoria" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cat_Jugador">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="primer_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="segundo_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="primer_apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="segundo_apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fec_nacimiento" Type="date" Nullable="false" />
+    <Property Name="fec_registro" Type="date" Nullable="false" />
+    <Property Name="dorsal" Type="smallint" Nullable="false" />
+    <Property Name="equipo" Type="int" />
+  </EntityType>
+  <EntityType Name="Data_Encuentro_Jugador">
+    <Key>
+      <PropertyRef Name="encuentro" />
+      <PropertyRef Name="jugador" />
+    </Key>
+    <Property Name="encuentro" Type="int" Nullable="false" />
+    <Property Name="jugador" Type="int" Nullable="false" />
+    <Property Name="goles_anotados" Type="int" Nullable="false" />
+    <Property Name="tarjetas_amarillas" Type="int" Nullable="false" />
+    <Property Name="tarjetas_rojas" Type="int" Nullable="false" />
+    <Property Name="goles_recibidos" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Encuentro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fec_encuentro" Type="date" Nullable="false" />
+    <Property Name="hora_encuentro" Type="time" Precision="7" Nullable="false" />
+    <Property Name="numero_campo" Type="smallint" Nullable="false" />
+    <Property Name="campeonato" Type="int" Nullable="false" />
+    <Property Name="equipo_local" Type="int" />
+    <Property Name="equipo_visita" Type="int" />
+    <Property Name="goles_local" Type="smallint" />
+    <Property Name="goles_visita" Type="smallint" />
+    <Property Name="finalizado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Posiciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="campeonato" Type="int" />
+    <Property Name="equipo" Type="int" />
+    <Property Name="goles_favor" Type="int" />
+    <Property Name="goles_contra" Type="int" />
+    <Property Name="juegos_ganados" Type="int" />
+    <Property Name="juegos_perdidos" Type="int" />
+    <Property Name="juegos_empatados" Type="int" />
+    <Property Name="puntos" Type="int" />
+  </EntityType>
+  <Association Name="FK_Campeonato_Cat_Categoria">
+    <End Role="Cat_Categoria" Type="Self.Cat_Categoria" Multiplicity="1" />
+    <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Categoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Campeonato">
+        <PropertyRef Name="categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cat_Equipo_Cat_Categoria">
+    <End Role="Cat_Categoria" Type="Self.Cat_Categoria" Multiplicity="1" />
+    <End Role="Cat_Equipo" Type="Self.Cat_Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Categoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cat_Equipo">
+        <PropertyRef Name="categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cat_Jugador_Cat_Equipo">
+    <End Role="Cat_Equipo" Type="Self.Cat_Equipo" Multiplicity="0..1" />
+    <End Role="Cat_Jugador" Type="Self.Cat_Jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Equipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cat_Jugador">
+        <PropertyRef Name="equipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Data_Encuentro_Jugador_Cat_Jugador">
+    <End Role="Cat_Jugador" Type="Self.Cat_Jugador" Multiplicity="1" />
+    <End Role="Data_Encuentro_Jugador" Type="Self.Data_Encuentro_Jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Jugador">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Data_Encuentro_Jugador">
+        <PropertyRef Name="jugador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Data_Encuentro_Jugador_Encuentro">
+    <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="1" />
+    <End Role="Data_Encuentro_Jugador" Type="Self.Data_Encuentro_Jugador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encuentro">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Data_Encuentro_Jugador">
+        <PropertyRef Name="encuentro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Encuentro_Campeonato">
+    <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="1" />
+    <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campeonato">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encuentro">
+        <PropertyRef Name="campeonato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Encuentro_Cat_Equipo">
+    <End Role="Cat_Equipo" Type="Self.Cat_Equipo" Multiplicity="0..1" />
+    <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Equipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encuentro">
+        <PropertyRef Name="equipo_local" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Encuentro_Cat_Equipo1">
+    <End Role="Cat_Equipo" Type="Self.Cat_Equipo" Multiplicity="0..1" />
+    <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Equipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encuentro">
+        <PropertyRef Name="equipo_visita" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Posiciones_Campeonato">
+    <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="0..1" />
+    <End Role="Posiciones" Type="Self.Posiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campeonato">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Posiciones">
+        <PropertyRef Name="campeonato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Posiciones_Cat_Equipo">
+    <End Role="Cat_Equipo" Type="Self.Cat_Equipo" Multiplicity="0..1" />
+    <End Role="Posiciones" Type="Self.Posiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cat_Equipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Posiciones">
+        <PropertyRef Name="equipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SoccerTotalModelStoreContainer">
+    <EntitySet Name="Campeonato" EntityType="Self.Campeonato" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cat_Categoria" EntityType="Self.Cat_Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cat_Equipo" EntityType="Self.Cat_Equipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cat_Jugador" EntityType="Self.Cat_Jugador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Data_Encuentro_Jugador" EntityType="Self.Data_Encuentro_Jugador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Encuentro" EntityType="Self.Encuentro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Posiciones" EntityType="Self.Posiciones" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Campeonato_Cat_Categoria" Association="Self.FK_Campeonato_Cat_Categoria">
+      <End Role="Cat_Categoria" EntitySet="Cat_Categoria" />
+      <End Role="Campeonato" EntitySet="Campeonato" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cat_Equipo_Cat_Categoria" Association="Self.FK_Cat_Equipo_Cat_Categoria">
+      <End Role="Cat_Categoria" EntitySet="Cat_Categoria" />
+      <End Role="Cat_Equipo" EntitySet="Cat_Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cat_Jugador_Cat_Equipo" Association="Self.FK_Cat_Jugador_Cat_Equipo">
+      <End Role="Cat_Equipo" EntitySet="Cat_Equipo" />
+      <End Role="Cat_Jugador" EntitySet="Cat_Jugador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Data_Encuentro_Jugador_Cat_Jugador" Association="Self.FK_Data_Encuentro_Jugador_Cat_Jugador">
+      <End Role="Cat_Jugador" EntitySet="Cat_Jugador" />
+      <End Role="Data_Encuentro_Jugador" EntitySet="Data_Encuentro_Jugador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Data_Encuentro_Jugador_Encuentro" Association="Self.FK_Data_Encuentro_Jugador_Encuentro">
+      <End Role="Encuentro" EntitySet="Encuentro" />
+      <End Role="Data_Encuentro_Jugador" EntitySet="Data_Encuentro_Jugador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Encuentro_Campeonato" Association="Self.FK_Encuentro_Campeonato">
+      <End Role="Campeonato" EntitySet="Campeonato" />
+      <End Role="Encuentro" EntitySet="Encuentro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Encuentro_Cat_Equipo" Association="Self.FK_Encuentro_Cat_Equipo">
+      <End Role="Cat_Equipo" EntitySet="Cat_Equipo" />
+      <End Role="Encuentro" EntitySet="Encuentro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Encuentro_Cat_Equipo1" Association="Self.FK_Encuentro_Cat_Equipo1">
+      <End Role="Cat_Equipo" EntitySet="Cat_Equipo" />
+      <End Role="Encuentro" EntitySet="Encuentro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Posiciones_Campeonato" Association="Self.FK_Posiciones_Campeonato">
+      <End Role="Campeonato" EntitySet="Campeonato" />
+      <End Role="Posiciones" EntitySet="Posiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Posiciones_Cat_Equipo" Association="Self.FK_Posiciones_Cat_Equipo">
+      <End Role="Cat_Equipo" EntitySet="Cat_Equipo" />
+      <End Role="Posiciones" EntitySet="Posiciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

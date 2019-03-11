@@ -1,0 +1,42 @@
+﻿@model APP_FUTBOL.Models.Cat_Equipo
+
+@{
+    ViewBag.Title = "Soccer Total";
+}
+
+<h2>Datos de equipo</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label col-md-2">Nombre:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2">Fecha de inscripción:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fec_inscripcion)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2">Categoría:</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Categoria.descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Ver jugadores", "Index", "Jugadores") |
+    @Html.ActionLink("Volver", "Index")
+</p>

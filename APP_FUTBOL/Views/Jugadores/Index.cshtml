@@ -1,0 +1,75 @@
+﻿@model IEnumerable<APP_FUTBOL.Models.Cat_Jugador>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.primer_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.segundo_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.primer_apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.segundo_apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fec_nacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fec_registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dorsal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cat_Equipo.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.primer_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.segundo_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.primer_apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.segundo_apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fec_nacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fec_registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dorsal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cat_Equipo.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

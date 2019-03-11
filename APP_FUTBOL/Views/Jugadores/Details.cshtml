@@ -1,0 +1,82 @@
+﻿@model APP_FUTBOL.Models.Cat_Jugador
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cat_Jugador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.primer_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.segundo_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.primer_apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.segundo_apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fec_nacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fec_nacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fec_registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fec_registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dorsal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dorsal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_Equipo.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Equipo.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

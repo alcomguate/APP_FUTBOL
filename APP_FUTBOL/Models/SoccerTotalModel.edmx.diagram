@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8399d2042e7641f093e989b1bd43ef4b" Name="Diagram1">
+        <EntityTypeShape EntityType="SoccerTotalModel.Campeonato" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoccerTotalModel.Cat_Categoria" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoccerTotalModel.Cat_Equipo" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoccerTotalModel.Cat_Jugador" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoccerTotalModel.Data_Encuentro_Jugador" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoccerTotalModel.Encuentro" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoccerTotalModel.Posicione" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Campeonato_Cat_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Encuentro_Campeonato" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Posiciones_Campeonato" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Encuentro_Cat_Equipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Encuentro_Cat_Equipo1" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Posiciones_Cat_Equipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Data_Encuentro_Jugador_Cat_Jugador" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Data_Encuentro_Jugador_Encuentro" ManuallyRouted="false" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Cat_Jugador_Cat_Equipo" />
+        <AssociationConnector Association="SoccerTotalModel.FK_Cat_Equipo_Cat_Categoria" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
